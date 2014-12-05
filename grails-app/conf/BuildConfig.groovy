@@ -65,13 +65,23 @@ grails.project.dependency.resolution = {
     dependencies {
 
         compile(
+                'org.apache.httpcomponents:httpcore:4.2',
+                'org.apache.httpcomponents:httpclient:4.2',
+        ) {
+            transitive = false
+        }
+
+        compile(
                 // Amazon Web Services programmatic interface
                 'com.amazonaws:aws-java-sdk:1.9.12',
+
                 // Transitive dependencies of aws-java-sdk, but also used directly.
                 // It would be great if we could upgrade httpcore and httpclient, but we can't until the AWS Java SDK
                 // upgrades its dependencies. If we simply upgrade these, then some Amazon calls fail.
-                'org.apache.httpcomponents:httpcore:4.2',
-                'org.apache.httpcomponents:httpclient:4.2',
+                // TODO figure out which calls were failing before, see if they're still
+                // failing now that we have unpinned these
+                //'org.apache.httpcomponents:httpcore:4.2',
+                //'org.apache.httpcomponents:httpclient:4.2',
 
                 // Explicitly including aws-java-sdk transitive dependencies
                 'org.codehaus.jackson:jackson-core-asl:1.8.9',
@@ -82,7 +92,9 @@ grails.project.dependency.resolution = {
 
                 // Easier Java from of the Apache Foundation
                 'commons-lang:commons-lang:2.4',
-     
+
+                'commons-codec:commons-codec:1.6',
+
                 // Better Zip Support
                 'org.apache.commons:commons-compress:1.8',
 
