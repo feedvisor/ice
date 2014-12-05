@@ -1,0 +1,11 @@
+.DS_Store
+classpath
+.project
+.settings
+.classpath
+
+target
+work
+wrapper/*.jar
+
+src/java/ice.properties
